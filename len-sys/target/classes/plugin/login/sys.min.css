@@ -1,0 +1,263 @@
+@charset "utf-8";
+body {
+    margin: 0;
+    padding: 0;
+    font: "宋体", "Arial";
+    font-size: 12px
+}
+
+img {
+    border: 0
+}
+
+.clear {
+    clear: both
+}
+
+
+
+
+
+
+
+
+
+
+.main-body {
+    width: 815px;
+    height: 576px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow: hidden
+}
+
+.no-qrcode {
+    width: 428px
+}
+
+.main-body .hide {
+    display: none !important
+}
+
+.new-login {
+    width: 428px;
+    position: relative;
+    float: left
+}
+
+.new-login .top {
+    width: 428px;
+    height: 117px;
+    background-color: #0371d1;
+    border-radius: 12px 12px 0 0;
+    font-family: SourceHanSansCN-Regular;
+    font-size: 30px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0;
+    color: #fff;
+    line-height: 117px;
+    text-align: center;
+    overflow: hidden;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg)
+}
+
+.new-login .top .bg1 {
+    display: inline-block;
+    width: 74px;
+    height: 74px;
+    background: #fff;
+    opacity: .1;
+    border-radius: 0 74px 0 0;
+    position: absolute;
+    left: 0;
+    top: 43px
+}
+
+.new-login .top .bg2 {
+    display: inline-block;
+    width: 94px;
+    height: 94px;
+    background: #fff;
+    opacity: .1;
+    border-radius: 50%;
+    position: absolute;
+    right: -16px;
+    top: -16px
+}
+
+.new-login .bottom {
+    width: 428px;
+    background: #fff;
+    border-radius: 0 0 12px 12px;
+    padding-bottom: 53px
+}
+
+.new-login .bottom .center {
+    width: 288px;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    position: relative
+}
+
+.new-login .bottom .center .item {
+    width: 288px;
+    height: 35px;
+    border-bottom: 1px solid #dae1e6;
+    margin-bottom: 35px
+}
+
+.new-login .bottom .center .item .validateImg {
+    position: absolute;
+    right: 36px;
+    cursor: pointer
+}
+
+.new-login .bottom .center .error {
+    position: absolute;
+    height: 26px;
+    line-height: 25px;
+    width: 264px;
+    border: 1px solid #fdd3d3;
+    bottom: 8px;
+    padding-left: 33px;
+    color: #e63333;
+    display: none;
+    background: url(login_icon.png?v=201806191627) -104px -50px no-repeat #feefef
+}
+
+.new-login .bottom .center .item .icon {
+    display: inline-block;
+    width: 33px;
+    height: 22px
+}
+
+.new-login .bottom .center .item .icon-1 {
+    background: url("icon-login.png?v=201808271650") no-repeat 1px 0
+}
+
+.new-login .bottom .center .item .icon-2 {
+    background: url("icon-login.png?v=201808271650") no-repeat -54px 0
+}
+
+.new-login .bottom .center .item .icon-3 {
+    background: url("icon-login.png?v=201808271650") no-repeat -106px 0
+}
+
+.new-login .bottom .center .item .icon-4 {
+    background: url("icon-login.png?v=201808271650") no-repeat 0 -43px;
+    position: absolute;
+    right: -10px;
+    cursor: pointer
+}
+
+.new-login .bottom .center .item .icon-5 {
+    background: url("icon-login.png?v=201808271650") no-repeat -55px -43px
+}
+
+.new-login .bottom .center .item .icon-6 {
+    background: url("icon-login.png?v=201808271650") no-repeat 0 -93px;
+    position: absolute;
+    right: -10px;
+    margin-top: 8px;
+    cursor: pointer
+}
+
+.new-login .bottom .center .item input {
+    display: inline-block;
+    width: 227px;
+    height: 22px;
+    padding: 0;
+    position: absolute;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    letter-spacing: 0
+}
+
+.new-login .bottom .tip {
+    clear: both;
+    height: 16px;
+    line-height: 16px;
+    width: 288px;
+    margin: 0 auto
+}
+
+.new-login .bottom .tip .icon-nocheck {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: solid 1px #9abcda;
+    position: relative;
+    top: 2px;
+    margin: 1px 8px 1px 1px;
+    cursor: pointer
+}
+
+.new-login .bottom .tip .icon-check {
+    margin: 0 7px 0 0;
+    width: 14px;
+    height: 14px;
+    border: 0;
+    background: url(icon-login.png?v=201808271650) no-repeat -111px -48px
+}
+
+.new-login .bottom .tip .login-tip {
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0;
+    color: #9abcda;
+    cursor: pointer
+}
+
+.new-login .bottom .tip .no-pwd {
+    font-stretch: normal;
+    letter-spacing: 0;
+    color: #1391ff;
+    text-decoration: none;
+    position: absolute;
+    right: 62px
+}
+
+.new-login .bottom .deal {
+    width: 288px;
+    height: 40px;
+    background-color: #229ffd;
+    border-radius: 16px;
+    margin: 0px auto 0;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0;
+    cursor: pointer;
+    outline: none;
+    border-width: 0px;
+}
+
+
+.foot {
+    position: absolute;
+    bottom: 28px;
+    text-align: center;
+    width: 100%
+}
+
+.foot a {
+    text-decoration: none;
+    color: #c7c7c7
+}

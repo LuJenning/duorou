@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link href="/plugin/login/sys.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css" media="all">
+
+</head>
+<script type="text/javascript" src="/plugin/login/jquery-core.min.js"></script>
+<script type="text/javascript" src="/plugin/login/jquery-ui-core.min.js"></script>
+<script type="text/javascript" src="/plugin/login/fai.min.js"></script>
+<script type="text/javascript" src="/plugin/layui/layui.all.js"></script>
+<style>
+    input::-webkit-input-placeholder {
+        color: #a6aebf;
+    }
+    input::-moz-placeholder {
+        color: #a6aebf;
+    }
+    input:-moz-placeholder {
+        color: #a6aebf;
+    }
+    input:-ms-input-placeholder {
+        color: #a6aebf;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    }
+    html {
+        height: 100%;
+    }
+</style>
+<body  id="body" style="height: 684px; background: url(plugin/login/demo2.png) 0 0 / cover no-repeat; position: static;">
+<div class="main-body no-qrcode">
+    <div class="new-login">
+        <div class="top">
+            lenosp管理平台
+            <span class="bg1"></span>
+            <span class="bg2"></span>
+        </div>
+        <form id="len-form" method="post" action="login" class="layui-form" >
+        <div class="bottom">
+            <div class="center">
+                <div class="item">
+                    <span class="icon icon-2"></span>
+                    <input name="username" lay-verify="username" type="text" id="loginSacct" placeholder="请输入账号" maxlength="20">
+                </div>
+                <div class="item">
+                    <span class="icon icon-3"></span>
+                    <input name="password" lay-verify="password"  type="password"  id="loginPwd" placeholder="请输入密码" maxlength="20">
+                    <input type="text" id="loginPwdText" placeholder="请输入密码" maxlength="20" class="hide">
+                    <input type="hidden" id="isRemember" name="isRemember" value="false"/>
+                    <span class="icon icon-4"></span>
+                </div>
+                <div id="validatePanel" class="item" style="width: 137px;">
+                    <input name="code" type="text" lay-verify="code" placeholder="请输入验证码" maxlength="4">
+                    <img class="validateImg" id="code" src="getCode">
+                    <span id="validateRefresh" class="icon icon-6"></span>
+                </div>
+            </div>
+            <div class="tip">
+                <span class="icon-nocheck" id="autoLogin"></span>
+                <span class="login-tip">两周内自动登录</span>
+<!--                <a href="javascript:" onclick="openPassword()" class="no-pwd">忘记密码？</a>-->
+            </div>
+            <div style="width: 300px;height: 50px;text-align: center;margin: 24px auto 0;">
+           <input id="loginBtn" class="deal"  value="立即登录" lay-submit lay-filter="login"  type="submit">
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+    var layer;
+    $(function () {
+
+        // 加载背景图片
+        $("#body").css('background', 'url("/plugin/login/demo2.png") no-repeat');
+        $("#body").css('backgroundSize', 'cover');
+
+
+        // 是否两周内自动登录
+        $('.icon-nocheck, .login-tip').click(function () {
+            $('.icon-nocheck').toggleClass('icon-check');
+            var isRemember=$('#isRemember').val();
+            if(isRemember==='false'){
+                isRemember='true';
+            }else{
+                isRemember='false'
+            }
+            $('#isRemember').val(isRemember);
+        });
+        layui.use(['form','layer'], function(){
+            var form = layui.form;
+            form.verify({
+                username:function(v){
+                    if(v.trim()==''){
+                        return "用户名不能为空";
+                    }
+                }
+                ,password:function(v){
+                    if(v.trim()==''){
+                        return "密码不能为空";
+                    }
+                },code:function(v){
+                    if(v.trim()==''){
+                        return '验证码不能为空';
+                    }
+                }
+            });
+
+            form.render();
+            //form.submit();
+        });
+        layer = layui.layer;
+        var msg='${message}';
+        let username='${username}';
+        if(msg.trim()!=""){
+            $("*[name='username']").val(username);
+            layer.msg(msg, {icon: 5,anim:6,offset: 't'});
+        }
+        $("#code,#validateRefresh").click(function(){
+            $('#code').attr('src', '/getCode?' + Math.random());
+        });
+
+        $('.icon-4').click(function () {
+            $(this).toggleClass('icon-5');
+            var pwdObj = $('#loginPwd');
+            var pwdTextObj = $('#loginPwdText');
+            var pwd = $(this).hasClass('icon-5') ? pwdObj.val() : pwdTextObj.val();
+            pwdObj.toggleClass('hide').val(pwd);
+            pwdTextObj.toggleClass('hide').val(pwd);
+        });
+        $("#loginPwdText").change(function () {
+            $('#loginPwd').val($("#loginPwdText").val());
+        });
+    });
+
+    if (window != top)
+        top.location.href = location.href;
+</script>
+</body>
+</html>

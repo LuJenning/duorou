@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>流程图</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css">
+    <link rel="stylesheet" href="/plugin/ztree/css/metroStyle/metroStyle.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/plugin/layui/layui.all.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/plugin/tools/tool.js" charset="utf-8"></script>
+</head>
+<style>
+    .tab-2{margin-left: 40%}
+</style>
+<body>
+<div class="x-body">
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">流程图</li>
+            <li>流程审批</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                    <div id="image" style="width:100%;height:100%;overflow: auto;">
+                        <div class="layui-form-item">
+                            <image id="showImages1" style="display: none;"></image>
+                            <image id="showImages2"></image>
+                        </div>
+            </div>
+        </div>
+            <div class="layui-tab-item tab-2">
+                <ul class="layui-timeline">
+
+                </ul>
+            </div>
+    </div>
+
+</div>
+<script>
+    var countNum = 0;
+    layui.use(['form', 'layer','element'], function () {
+        $ = layui.jquery;
+        layer.load(1);
+        $.getJSON('${re.contextPath}/act/getShineProcImage?processInstanceId=${processInstanceId}', function (json) {
+            let result = json.images;
+            let task=json.taskSqu;
+            if(typeof task!=='undefined'){
+                showTask(task);
+            }
+            let imgObj1 = document.getElementById("showImages1")
+            imgObj1.src = "data:image/png;base64," + result[0];
+            let imgObj2 = document.getElementById("showImages2")
+            imgObj2.src = "data:image/png;base64," + result[1];
+            window.setInterval(function () {
+                if (countNum === 0) {
+                    $("#showImages1").show();
+                    $("#showImages2").hide();
+                } else {
+                    $("#showImages1").hide();
+                    $("#showImages2").show();
+                }
+                countNum++;
+                if (countNum === 2) {
+                    countNum = 0;
+                }
+            }, 1000);
+            layer.closeAll('loading');
+        });
+
+    });
+
+    function showTask(task){
+        let msg=``;
+        for(let i=0;i<task.length;i++){
+            let t=task[i];
+            msg+= `<li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <br/>
+                        <i class="layui-icon layui-timeline-axis">&#xe61a;</i>
+                        <div class="layui-timeline-content layui-text">
+                            <h3 class="layui-timeline-title">`;
+            msg+=t.taskName;
+            msg+=`</h3>
+                            <p>
+                                <br>审批人：`;
+            if(t.userName!==null){
+                msg+=t.userName;
+            }
+            msg+=`<br>审批组：`;
+            if(t.groupNames){
+                t.groupNames.forEach(function(v,index){
+                    msg+=v;
+                    msg+=(index===t.groupNames.length-1?'':'/');
+                });
+            }
+            msg+=`
+                                <br>审批时间：`;
+            if(t.time!==null) {
+                msg += t.time;
+            }
+            msg+=`
+                            </p>
+                        </div>
+                    </li>`
+        }
+        let line=document.getElementsByClassName('layui-timeline')[0];
+        line.innerHTML=msg;
+    }
+</script>
+</body>
+
+
+</html>

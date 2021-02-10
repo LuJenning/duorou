@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仪表盘</title>
+</head>
+<script type="text/javascript" src="${re.contextPath}/plugin/plugins/echarts/echart.min.js"
+        charset="utf-8"></script>
+<style>
+    body {
+        background: #ebeff2;
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+    }
+
+    .len-top {
+        height: 200px;
+    }
+
+    .len-top .len-top-one {
+        height: 20px;
+        width: 95%;
+        font-weight: bold;
+        margin: 0 0 5px 10px
+    }
+
+    ul, li {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+    }
+
+    .len-top .len-top-two {
+        margin-top: 3px;
+    }
+
+    .len-top .len-top-two ul li {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
+        border-radius: 5px;
+        background-color: #ffffff;
+        height: 150px;
+        width: 20%;
+        margin-left: 30px;
+        list-style: none;
+        float: left;
+        padding: 10px;
+    }
+
+    .len-center {
+        margin: 20px 0 0 0;
+        height: 250px;
+    }
+
+    .len-center .len-center-one ul li {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
+        border-radius: 5px;
+        background-color: #ffffff;
+        height: 220px;
+        width: 25%;
+        margin-left: 55px;
+        list-style: none;
+        float: left;
+        padding: 10px;
+    }
+    .len-center .len-center-one ul li div{
+        margin-left: 10px;
+        padding:10px
+    }
+
+    .m-t-0 {
+        margin-top: 0 !important;
+        font-weight: bold;
+    }
+
+    .len-top .len-top-two ul li .tb div {
+        text-align: center;
+        padding-top: 25px;
+    }
+</style>
+<body>
+<div>
+    <div class="len-top">
+        <div class="len-top-one">
+            <span>仪表盘</span>
+        </div>
+        <div class="len-top-two">
+            <ul>
+                <li>
+                    <div class="m-t-0">用户数量</div>
+                    <div id="tb1" class="tb" style="width:90%;height:130px">
+                    </div>
+                </li>
+                <li>
+                    <div class=" m-t-0">待办任务</div>
+                    <div class="tb" style="width:90%;height:130px">
+                        <div><h2>10</h2></div>
+                    </div>
+                </li>
+                <li>
+                    <div class=" m-t-0">系统日志</div>
+                    <div class="tb" style="width:90%;height:130px">
+                        <div><h2>2586</h2></div>
+                    </div>
+                </li>
+                <li>
+                    <div class=" m-t-0">定时任务</div>
+                    <div class="tb" style="width:90%;height:130px">
+                        <div><h2>3</h2></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="len-center">
+        <div class="len-center-one">
+            <ul>
+                <li>
+                    <div class="m-t-0">图表</div>
+                    <div id="tb2" class="tb" style="width:90%;height:130px">
+                    </div>
+                </li>
+                <li>
+                    <div class="m-t-0">图表</div>
+                    <div id="tb3" class="tb" style="width:90%;height:130px">
+                    </div>
+                </li>
+                <li>
+                    <div class="m-t-0">图表</div>
+                    <div id="tb4" class="tb" style="width:90%;height:130px">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    var chat1 = echarts.init(document.getElementById('tb1'));
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} "
+        },
+        series: [
+            {
+                name: '用户数量',
+                type: 'pie',
+                radius: ['80%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                },
+                data: [
+                    {value: 100, name: '用户数量'},
+                ]
+            }
+        ]
+    };
+    chat1.setOption(option);
+
+    var chat2 = echarts.init(document.getElementById('tb2'));
+    var option2 = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [
+                    {value: 335, name: '直接访问'},
+                    {value: 310, name: '邮件营销'},
+                    {value: 234, name: '联盟广告'},
+                    {value: 135, name: '视频广告'},
+                    {value: 1548, name: '搜索引擎'}
+                ]
+            }
+        ]
+    };
+    chat2.setOption(option2);
+
+    var chat3 = echarts.init(document.getElementById('tb3'));
+    var option3 = {
+        color: ['#3398DB'],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {
+                type : 'shadow'
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '0',
+            top: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'直接访问',
+                type:'bar',
+                barWidth: '60%',
+                data:[10, 52, 200, 334, 390, 330, 220]
+            }
+        ]
+    };
+    chat3.setOption(option3);
+
+    var chat4 = echarts.init(document.getElementById('tb4'));
+   var option4 = {
+       grid: {
+           left: '3%',
+           right: '4%',
+           bottom: '0',
+           top: '3%',
+           containLabel: true
+       },
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+    chat4.setOption(option4);
+</script>
+</html>

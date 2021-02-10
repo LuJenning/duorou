@@ -1,0 +1,92 @@
+server:
+  port: 8088
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  devtools:
+      restart:
+        enabled: true
+  datasource:
+        url: jdbc:mysql://localhost:3306/lenos?useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: QDKJ123
+        # 推荐使用HikariCP数据源
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        sqlScriptEncoding: UTF-8
+        hikari:
+          minimum-idle: 5
+          maximum-pool-size: 15
+          auto-commit: true
+          idle-timeout: 30000
+          pool-name: DatebookHikariCP
+          max-lifetime: 1800000
+          connection-timeout: 30000
+          connection-test-query: SELECT 1
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 3000
+    maxRetryCount: 10
+    second: 300
+  session:
+    store-type: redis
+  data:
+    redis:
+      repositories:
+        enabled: false
+  http:
+      encoding:
+        force: true
+#        需要启动admin模块 来监听
+  boot:
+    admin:
+      client:
+        url: http://localhost:8082
+
+
+#management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+      health:
+          show-details: ALWAYS
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+#    博客用到redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+mybatis:
+    type-aliases-package: com.len.entity
+    mapper-locations: classpath*:mapper/*.xml
+    check-config-location: true
+
+
+# PageHelperConfig
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+lenosp:
+  uploadPath: ./file/
+  isDayType: false
+
+  imagePath: ./image/
+
+logging:
+  file: ./logs/lenosp-log.log
+  level:
+    com.len.mapper: debug
+
+dataType: mysql
+
+redis:
+  prefix: len_

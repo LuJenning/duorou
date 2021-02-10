@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="len-activiti" />
+        <module name="len-web" />
+        <module name="len-sys" />
+        <module name="len-blog" />
+        <module name="len-admin" />
+        <module name="len-core" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="duorou_back" target="1.8" />
+      <module name="len-activiti" target="1.8" />
+      <module name="len-admin" target="1.8" />
+      <module name="len-blog" target="1.8" />
+      <module name="len-core" target="1.8" />
+      <module name="len-sys" target="1.8" />
+      <module name="len-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="len-activiti" options="-parameters" />
+      <module name="len-admin" options="-parameters" />
+      <module name="len-blog" options="-parameters" />
+      <module name="len-core" options="-parameters" />
+      <module name="len-sys" options="-parameters" />
+      <module name="len-web" options="-parameters" />
+    </option>
+  </component>
+</project>

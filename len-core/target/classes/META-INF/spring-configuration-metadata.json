@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {
+      "name": "",
+      "type": "com.len.util.UploadUtil",
+      "sourceType": "com.len.util.UploadUtil"
+    }
+  ],
+  "properties": [
+    {
+      "name": "image-path",
+      "type": "java.lang.String",
+      "sourceType": "com.len.util.UploadUtil"
+    },
+    {
+      "name": "is-day-type",
+      "type": "java.lang.Boolean",
+      "description": "按照当日创建文件夹",
+      "sourceType": "com.len.util.UploadUtil",
+      "defaultValue": false
+    },
+    {
+      "name": "upload-path",
+      "type": "java.lang.String",
+      "description": "自定义文件路径",
+      "sourceType": "com.len.util.UploadUtil"
+    }
+  ],
+  "hints": []
+}
